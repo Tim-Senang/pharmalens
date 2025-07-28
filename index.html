@@ -168,44 +168,30 @@
         <p class="text-center text-gray-500 mb-6">
           Unggah foto kemasan obat dan dapatkan informasinya secara instan
         </p>
-        <form
-          class="bg-gradient-to-r from-white to-green-50 p-8 rounded-xl shadow-lg space-y-6 border"
-        >
-          <div>
-            <label class="block mb-2 font-medium text-gray-700"
-              >Upload Foto Obat</label
-            >
-            <input
-              type="file"
-              class="w-full border border-gray-300 rounded px-3 py-2 file:mr-4 file:py-2 file:px-4 file:border-0 file:rounded file:bg-green-600 file:text-white hover:file:bg-green-700"
-              accept="image/*"
-            />
-          </div>
-          <div>
-            <label class="block mb-2 font-medium text-gray-700"
-              >Hasil Scan</label
-            >
-            <textarea
-              class="w-full border rounded px-3 py-2 h-32 bg-gray-50"
-              placeholder="Hasil scan akan muncul di sini..."
-              readonly
-            ></textarea>
-          </div>
-          <div class="flex justify-between">
-            <button
-              type="button"
-              class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-            >
-              Simpan Riwayat
-            </button>
-            <button
-              type="reset"
-              class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400"
-            >
-              Scan Ulang
-            </button>
-          </div>
-        </form>
+        <form id="scan-form" class="bg-gradient-to-r from-white to-green-50 p-8 rounded-xl shadow-lg space-y-6 border">
+  <div class="mb-4">
+    <label class="block mb-2 font-medium text-gray-700">Nama Obat (Manual)</label>
+    <input id="nama-obat" type="text" class="w-full border border-gray-300 rounded px-3 py-2" placeholder="Masukkan nama obat atau scan gambar" />
+  </div>
+  <div class="mb-4">
+    <label class="block mb-2 font-medium text-gray-700">Upload Foto Obat</label>
+    <input id="file-obat" type="file" class="w-full border border-gray-300 rounded px-3 py-2 file:mr-4 file:py-2 file:px-4 file:border-0 file:rounded file:bg-green-600 file:text-white hover:file:bg-green-700" accept="image/*" />
+    <div id="preview-container" class="mt-2 hidden">
+      <img id="preview-image" src="#" alt="Preview Obat" class="max-h-40 mx-auto rounded shadow border" />
+    </div>
+  </div>
+  <div class="mb-4 flex gap-2">
+    <button id="proses-btn" type="button" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Proses</button>
+    <button type="reset" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400">Reset</button>
+  </div>
+  <div>
+    <label class="block mb-2 font-medium text-gray-700">Hasil</label>
+    <textarea id="hasil-scan" class="w-full border rounded px-3 py-2 h-32 bg-gray-50" placeholder="Hasil scan atau manfaat obat akan muncul di sini..." readonly></textarea>
+  </div>
+  <div class="flex justify-end">
+    <button id="simpan-riwayat-btn" type="button" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Simpan Riwayat</button>
+  </div>
+</form>
       </div>
     </section>
 
@@ -249,6 +235,102 @@
       </div>
     </footer>
 
+    <!-- Script Integrasi Scan & Manfaat Obat -->
+    <script>
+      const prosesBtn = document.getElementById('proses-btn');
+      const simpanBtn = document.getElementById('simpan-riwayat-btn');
+      const hasilScan = document.getElementById('hasil-scan');
+      const namaObatInput = document.getElementById('nama-obat');
+      const fileObatInput = document.getElementById('file-obat');
+
+      let lastNamaObat = '';
+      let lastManfaat = '';
+
+      prosesBtn.addEventListener('click', async () => {
+        hasilScan.value = 'Memproses...';
+        let namaObat = namaObatInput.value.trim();
+        let manfaat = '';
+        if (namaObat) {
+          // Manual input, fetch manfaat dari backend
+          try {
+            const res = await fetch('http://127.0.0.1:5000/manfaat', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ nama_obat: namaObat })
+            });
+            const data = await res.json();
+            if (data.manfaat) {
+              hasilScan.value = data.manfaat;
+              lastNamaObat = namaObat;
+              lastManfaat = data.manfaat;
+            } else {
+              hasilScan.value = data.error || 'Gagal mendapatkan manfaat.';
+            }
+          } catch (e) {
+            hasilScan.value = 'Terjadi kesalahan.';
+          }
+        } else if (fileObatInput.files.length > 0) {
+          // Scan gambar, fetch nama obat dari backend
+          const formData = new FormData();
+          formData.append('file', fileObatInput.files[0]);
+          try {
+            const res = await fetch('http://127.0.0.1:5000/scan', {
+              method: 'POST',
+              body: formData
+            });
+            const data = await res.json();
+            if (data.text) {
+              // Ambil nama obat dari hasil OCR
+              namaObat = data.text.split('\n')[0].trim(); // Ambil baris pertama
+              namaObatInput.value = namaObat;
+              // Fetch manfaat obat
+              const res2 = await fetch('http://127.0.0.1:5000/manfaat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ nama_obat: namaObat })
+              });
+              const data2 = await res2.json();
+              if (data2.manfaat) {
+                hasilScan.value = data2.manfaat;
+                lastNamaObat = namaObat;
+                lastManfaat = data2.manfaat;
+              } else {
+                hasilScan.value = data2.error || 'Gagal mendapatkan manfaat.';
+              }
+            } else {
+              hasilScan.value = data.error || 'Gagal scan gambar.';
+            }
+          } catch (e) {
+            hasilScan.value = 'Terjadi kesalahan saat scan.';
+          }
+        } else {
+          hasilScan.value = 'Isi nama obat atau upload gambar.';
+        }
+      });
+
+      simpanBtn.addEventListener('click', async () => {
+        if (!lastNamaObat || !lastManfaat) {
+          alert('Proses dulu nama obat atau scan gambar sebelum simpan riwayat.');
+          return;
+        }
+        try {
+          const res = await fetch('http://127.0.0.1:5000/riwayat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nama_obat: lastNamaObat, manfaat: lastManfaat })
+          });
+          const data = await res.json();
+          if (data.status === 'ok') {
+            alert('Riwayat berhasil disimpan!');
+          } else {
+            alert('Gagal simpan riwayat.');
+          }
+        } catch (e) {
+          alert('Terjadi kesalahan saat simpan riwayat.');
+        }
+      });
+    </script>
+
     <!-- Script -->
     <script>
       function toggleMenu() {
@@ -269,5 +351,32 @@
         }
       }
     </script>
-  </body>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const fileObatInput = document.getElementById('file-obat');
+    const previewContainer = document.getElementById('preview-container');
+    const previewImage = document.getElementById('preview-image');
+  
+    fileObatInput.addEventListener('change', function() {
+      if (this.files && this.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          previewImage.src = e.target.result;
+          previewContainer.classList.remove('hidden');
+        };
+        reader.readAsDataURL(this.files[0]);
+      } else {
+        previewContainer.classList.add('hidden');
+        previewImage.src = '#';
+      }
+    });
+  
+    document.getElementById('scan-form').addEventListener('reset', function() {
+      previewContainer.classList.add('hidden');
+      previewImage.src = '#';
+    });
+  });
+  </script>
+    </body>
 </html>
