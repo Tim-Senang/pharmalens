@@ -34,19 +34,19 @@
 </head>
 <body class="overflow-x-hidden bg-green-900">
   <!-- Navbar -->
-  <div class="navbar px-4 py-1 sticky top-0 text-green-900 bg-white z-50 shadow">
+  <div class="navbar px-4 py-1 sticky top-0 text-green-900 bg-white z-50">
     <div class="container mx-auto">
       <div class="navbar-box flex items-center justify-between">
         <div class="logo flex items-center gap-x-2">
           <img src="./img/pharmalens.png" alt="flaticon.com" class="md:w-9 w-7">
-          <h1 class="font-extrabold md:text-2xl text-xl">Pharmalens</h1>
+          <h1 class="font-extrabold md:text-xl text-md">Pharmalens</h1>
         </div>
-        <ul class="menu flex gap-x-4 py-2 items-center font-bold md:static absolute z-10 top-17 left-0 md:flex-row flex-col md:bg-transparent bg-green-100 md:text-green-800 text-green-700 md:w-auto w-full">
+        <ul class="menu flex gap-x-4 py-1 items-center font-bold md:static absolute z-10 top-17 left-0 md:flex-row flex-col md:bg-transparent bg-green-100 md:text-green-800 text-green-700 md:w-auto w-full">
           <li class="py-4 w-full text-center"><a href="#beranda" class="p-4 hover:bg-green-900 hover:text-green-100 rounded-2xl duration-500">Beranda</a></li>
           <li class="py-4 w-full text-center"><a href="#tentang" class="p-4 hover:bg-green-900 hover:text-green-100 rounded-2xl duration-500">Tentang</a></li>
           <li class="py-4 w-full text-center"><a href="#fitur" class="p-4 hover:bg-green-900 hover:text-green-100 rounded-2xl duration-500">Fitur</a></li>
-          <li class="py-4 w-full text-center"><a href="#scan" class="p-4 hover:bg-green-900 hover:text-green-100 rounded-2xl duration-500">Scan</a></li>
-          <li class="py-4 w-full text-center"><a href="#riwayat" class="p-4 hover:bg-green-900 hover:text-green-100 rounded-2xl duration-500">Riwayat</a></li>
+          <li class="py-4 w-full text-center"><a href="scan-obat.html" class="p-4 hover:bg-green-900 hover:text-green-100 rounded-2xl duration-500">Scan</a></li>
+          <li class="py-4 w-full text-center"><a href="riwayat-scan.html" class="p-4 hover:bg-green-900 hover:text-green-100 rounded-2xl duration-500">Riwayat</a></li>
         </ul>
         
         <div class="md:hidden block">
@@ -62,7 +62,7 @@
   <!-- Navbar -->
 
   <!-- Beranda -->
-  <div class="header h-auto flex items-center bg-slate-100 md:mx-32 md:my-8 md:rounded-3xl md:py-0 py-2 rounded-b-[70px]" id="beranda">
+  <div class="header h-auto flex items-center bg-slate-100 md:mx-32 md:my-8 md:rounded-3xl md:py-0 py-2 rounded-b-[70px] scroll-mt-24" id="beranda">
     <div class="container mx-auto px-5">
       <div class="header-box flex lg:flex-row flex-col items-center gap-1">
         <div class="box lg:w-1/2 lg:order-1 order-2 lg:text-left text-center px-14">
@@ -78,7 +78,7 @@
   </div>
 
   <!-- Tentang -->
-   <div class="about py-24" id="tentang">
+   <div class="about md:py-24 py-16" id="tentang">
     <div class="container mx-auto py-4">
       <div class="about-box">
         <div class="box text-center">
@@ -89,7 +89,7 @@
           secara instan.</p>
         </div>
         <div class="box pt-10">
-          <img src="./img/about.svg" alt="storyset.com" class="md:w-[550px] w-[300px] mx-auto">
+          <img src="./img/about.svg" alt="storyset.com" class="md:w-[550px] sm:w-[300px] w-[200px] mx-auto">
         </div>
       </div>
     </div>
@@ -97,30 +97,30 @@
   <!-- Tentang -->
 
   <!-- Fitur -->
-   <div class="service" id="fitur">
-    <div class="container mx-auto my-24 px-4">
+   <div class="service scroll-mt-24" id="fitur">
+    <div class="container mx-auto md:my-24 my-20 px-4">
       <div class="service box">
         <div class="box text-center">
           <h1 class="font-extrabold md:text-4xl sm:text-3xl text-2xl  text-slate-100 mb-6" data-aos="fade-up" data-aos-durations="1000">Fitur Unggulan Kami</h1>
           <p class="md:w-3/4 text-slate-100 w-full mx-auto leading-loose" data-aos="fade-up" data-aos-durations="1000" data-aos-delay="200">Kami hadir untuk memudahkan Anda dalam memahami obat yang dikonsumsi. Dengan fitur-fitur berikut, dapatkan informasi obat dengan cepat dan praktis</p>
         </div>
         <div class="box flex items-center justify-center gap-10 flex-wrap pt-12">
-            <div class="p-5 flex flex-col justify-center items-center w-[270px] h-[270px] bg-slate-100 text-center rounded-2xl  transform hover:-translate-y-4 transition duration-500" style="box-shadow: 17px 15px 0px -6px rgba(234, 239, 157, 0.75);">
+            <div class="p-5 flex flex-col justify-center items-center md:w-[270px] w-[250px] md:h-[270px] h-[250px] bg-slate-100 text-center rounded-2xl  transform hover:-translate-y-4 transition duration-500" style="box-shadow: 17px 15px 0px -6px rgba(234, 239, 157, 0.75);">
 
               <i class="fa-solid fa-camera text-4xl text-green-800 mb-5"></i>
               <h1 class="md:text-2xl text-xl font-bold mb-2">Pindai Obat</h1>
-              <p>Ambil foto kemasan atau label obat untuk mulai mengenali informasi penting seputar produk tersebut secara instan.</p>
+              <p class="md:text-md text-sm">Ambil foto kemasan atau label obat untuk mulai mengenali informasi penting seputar produk tersebut secara instan.</p>
             </div>
-            <div class="p-5 flex flex-col justify-center items-center w-[270px] h-[270px] bg-slate-100 text-center rounded-2xl transform hover:-translate-y-4 transition duration-500" style="box-shadow: 17px 15px 0px -6px rgba(234, 239, 157, 0.75);">
+            <div class="p-5 flex flex-col justify-center items-center md:w-[270px] w-[250px] md:h-[270px] h-[250px] bg-slate-100 text-center rounded-2xl transform hover:-translate-y-4 transition duration-500" style="box-shadow: 17px 15px 0px -6px rgba(234, 239, 157, 0.75);">
 
               <i class="fa-solid fa-search text-4xl text-green-800 mb-5"></i>
               <h1 class="md:text-2xl text-xl font-bold mb-2">Lihat Indikasi</h1>
-              <p>Temukan kegunaan, cara kerja, dan manfaat dari obat yang Anda konsumsi hanya dalam beberapa detik.</p>
+              <p class="md:text-md text-sm">Temukan kegunaan, cara kerja, dan manfaat dari obat yang Anda konsumsi hanya dalam beberapa detik.</p>
             </div>
-            <div class="p-5 flex flex-col justify-center items-center w-[270px] h-[270px] bg-slate-100 text-center rounded-2xl transform hover:-translate-y-4 transition duration-500" style="box-shadow: 17px 15px 0px -6px rgba(234, 239, 157, 0.75)">
+            <div class="p-5 flex flex-col justify-center items-center md:w-[270px] w-[250px] md:h-[270px] h-[250px] bg-slate-100 text-center rounded-2xl transform hover:-translate-y-4 transition duration-500" style="box-shadow: 17px 15px 0px -6px rgba(234, 239, 157, 0.75)">
               <i class="fa-solid fa-file-medical text-4xl text-green-800 mb-5"></i>
               <h1 class="md:text-2xl text-xl font-bold mb-2">Cek Riwayat</h1>
-              <p>Riwayat pemindaian Anda tersimpan otomatis, memudahkan untuk mengecek kembali obat yang pernah Anda telusuri.</p>
+              <p class="md:text-md text-sm">Riwayat pemindaian Anda tersimpan otomatis, memudahkan untuk mengecek kembali obat yang pernah Anda telusuri.</p>
             </div>
       </div>
     </div>
@@ -128,13 +128,13 @@
   <!-- Fitur -->
 
   <!-- Scan -->
-  <div class="scan flex items-center md:mx-32 md:my-20 md:rounded-3xl py-36 rounded-b-[70px]" id="scan">
+  <div class="scan flex items-center md:mx-32 md:my-20 md:rounded-3xl md:py-36 py-20 rounded-b-[70px]" id="scan">
     <div class="scan mx-auto px-4">
       <div class="scan-box flex lg:flex-row flex-col items-center gap-1">
         <div class="box lg:w-1/2 lg:order-1 order-2 lg:text-left text-center px-[10px]">
-          <h1 class="font-extrabold text-slate-100 md:text-4xl sm:text-3xl text-2xl mb-6" data-aos="fade-up" data-aos-duration="1000">Coba Sekarang, Lebih Mudah Kenali Obat Anda!</h1>
+          <h1 class="font-extrabold text-slate-100 md:text-4xl sm:text-3xl text-xl mb-6" data-aos="fade-up" data-aos-duration="1000">Coba Sekarang, Lebih Mudah Kenali Obat Anda!</h1>
           <p class="text-slate-100 leading-loose mb-8" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">Temukan manfaat fitur kami secara langsung. Cukup unggah foto label obat dan dapatkan informasi penting seketika. Praktis, cepat, dan gratis!</p>
-          <a href="#" class="md:w-48 w-44 md:h-12 h-11 sm:mb-6 mb-7 mt-4 p-4 bg-green-100 rounded-xl font-bold text-green-800 hover:bg-green-200 animate__animated animate__fadeInUp animate__delay-1s">Coba Sekarang</a>    
+          <a href="scan-obat.html" class="md:w-48 w-44 md:h-12 h-11 sm:mb-6 mb-7 mt-4 p-4 bg-green-100 rounded-xl font-bold text-green-800 hover:bg-green-200 animate__animated animate__fadeInUp animate__delay-1s">Coba Sekarang</a>    
         </div> 
         <div class="box lg:w-1/2 lg:order-2 order-1 lg:pt-0 pt-2">
           <img src="./img/pharmacist.svg" alt="undraw.co" class="xl:w-[450px] lg:w-[400px] md:w-[300px] w-[250px] block ml-auto animate__animated animate__fadeInUp animate__delay-1s">
@@ -145,27 +145,27 @@
   <!-- Scan -->
   
   <!-- Footer -->
-  <div class="footer py-7 bg-green-100 text-green-900 bottom-0">
-    <div class="container mx-auto px-4">
-      <div class="footer-box flex justify-center items-center flex-col gap-10">
-        <div class="box lg:w-[500px]">
-          <div class="logo flex justify-center items-center gap-2">
-            <img src="./img/pharmalens.png" alt="flaticon.com" class="md:w-16 w-12">
-            <h1 class="font-bold md:text-2xl text-xl">Pharmalens</h1>
-          </div>
+    <div class="footer py-7 bg-green-100 text-green-900 bottom-0">
+        <div class="container mx-auto px-4">
+            <div class="footer-box flex justify-center items-center flex-col gap-5">
+                <div class="box lg:w-[500px]">
+                    <div class="logo flex justify-center items-center gap-2">
+                        <img src="./img/pharmalens.png" alt="flaticon.com" class="md:w-12 w-9" />
+                        <h1 class="font-bold md:text-xl text-sm">Pharmalens</h1>
+                    </div>
+                </div>
+                <div class="box flex items-center justify-center lg:w-[80px] w-[60px] md:gap-10 gap-2 font-bold md:text-[15px] text-[10px]">
+                    <a href="#beranda" class="opacity-70 hover:opacity-100">Beranda</a>
+                    <a href="#tentang" class="opacity-70 hover:opacity-100">Tentang</a>
+                    <a href="#fitur" class="opacity-70 hover:opacity-100">Fitur</a>
+                    <a href="scan-obat.html" class="opacity-70 hover:opacity-100">Scan</a>
+                    <a href="riwayat-scan.html" class="opacity-70 hover:opacity-100">Riwayat</a>
+                </div>
+                <hr class="w-full border-t-1 border-green-900" />
+                <p class="text-xs">&copy; 2025 Pharmalens | All Rights Reserved</p>
+            </div>
         </div>
-        <div class="box flex items-center justify-center lg:w-[100px] w-[60px] md:gap-10 gap-5 font-bold md:text-xl text-sm">
-          <a href="#beranda" class="opacity-70 hover:opacity-100">Beranda</a>
-          <a href="#fitur" class="opacity-70 hover:opacity-100">Tentang</a>
-          <a href="#layanan" class="opacity-70 hover:opacity-100">Fitur</a>
-          <a href="#scan" class="opacity-70 hover:opacity-100">Scan</a>
-          <a href="#riwayat" class="opacity-70 hover:opacity-100">Riwayat</a>
-        </div>
-        <hr class="w-full border-t-1 border-green-900" />
-        <p class="text-xs">&copy; 2025 Pharmalens | All Rights Reserved</p>
-      </div>
     </div>
-  </div>
   <!-- Footer -->
 
 
