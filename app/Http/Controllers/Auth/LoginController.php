@@ -25,7 +25,7 @@ class LoginController extends Controller
         ]);
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
-            return redirect()->route('dashboard');;
+            return redirect()->route('welcome');;
         }
 
         return back()->withErrors([
@@ -35,9 +35,6 @@ class LoginController extends Controller
        
     }
 
-    public function register(){
-        return view('auth.register');
-    }
     public function handleRegister(Request $request)
     {
         $data = [
@@ -54,7 +51,9 @@ class LoginController extends Controller
     }
     public function logout(Request $request)
     {
-        Auth::logout();
-        return redirect('/')->with('success', 'Anda Berhasil Logout');
+        Auth::logout(); // Mengeluarkan pengguna dari sesi
+        $request->session()->invalidate(); // Menghapus sesi
+        $request->session()->regenerateToken(); // Menghasilkan token sesi baru
+        return redirect('/login'); // Redirect ke halaman login setelah logout
     }
 }

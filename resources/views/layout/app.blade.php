@@ -1,213 +1,253 @@
-<!DOCTYPE html>
-<html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pharmalens</title>
+<!doctype html>
+<html class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ asset('images/pharmalens.png') }}" type="image/x-icon">
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Font Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
+    <!-- Jonsuh Hamburger -->
+    <link rel="stylesheet" href="{{ asset('css/hamburgers.css') }}">
+    {{-- font awesome  --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Animate Style -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    {{-- Alpine Js --}}
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- AOS (Animate on Scroll) -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!-- CSS -->
+    <link rel="stylesheet"href="{{ asset('css/input.css') }}">
+    <link rel="stylesheet"href="{{ asset('css/output.css') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <title>Pharmalens</title>
+</head>
 
-    <style>
-      html {
-        scroll-behavior: smooth;
-      }
-    </style>
-  </head>
-  <body class="bg-gray-50 text-gray-800">
+<body class="overflow-x-hidden bg-green-900">
     <!-- Navbar -->
-    <nav class="bg-white shadow-md py-4 sticky top-0 z-50">
-      <div class="container mx-auto px-4 flex justify-between items-center">
-        <h1 class="text-2xl font-bold text-green-600">Pharmalens</h1>
-        <ul class="hidden md:flex items-center space-x-6">
-          <li><a href="#" class="hover:text-green-600">Home</a></li>
-          <li><a href="#about" class="hover:text-green-600">About</a></li>
-          <li><a href="#services" class="hover:text-green-600">Services</a></li>
-          <li><a href="#history" class="hover:text-green-600">Riwayat</a></li>
-          <li><a href="#scan" class="hover:text-green-600">Scan</a></li>
-          <li>
-            <a href="/login"
-              class="border border-green-600 text-green-600 px-4 py-2 rounded hover:bg-green-600 hover:text-white transition" 
-            >
-              Login
-          </a>
-          </li>
-        </ul>
-        <!-- Hamburger button -->
-        <button class="md:hidden text-3xl relative z-50" onclick="toggleMenu()">
-          ☰
-        </button>
-      </div>
-    </nav>
+    <div class="navbar px-4 py-1 sticky top-0 text-green-900 bg-white z-50">
+        <div class="container mx-auto">
+            <div class="navbar-box flex items-center justify-between">
+                <div class="logo flex items-center gap-x-2">
+                    <img src="{{ asset('images/pharmalens.png') }}" alt="flaticon.com" class="md:w-9 w-7">
+                    <h1 class="font-extrabold md:text-xl text-md">Pharmalens</h1>
+                </div>
+                <ul
+                    class="menu flex gap-x-4 py-1 items-center font-bold md:static absolute z-10 top-17 left-0 md:flex-row flex-col md:bg-transparent bg-green-100 md:text-green-800 text-green-700 md:w-auto w-full">
+                    <li class="py-4 w-full text-center"><a href="#beranda"
+                            class="p-4 hover:bg-green-900 hover:text-green-100 rounded-2xl duration-500">Beranda</a>
+                    </li>
+                    <li class="py-4 w-full text-center"><a href="#tentang"
+                            class="p-4 hover:bg-green-900 hover:text-green-100 rounded-2xl duration-500">Tentang</a>
+                    </li>
+                    <li class="py-4 w-full text-center"><a href="#fitur"
+                            class="p-4 hover:bg-green-900 hover:text-green-100 rounded-2xl duration-500">Fitur</a></li>
+                    <li class="py-4 w-full text-center"><a href="{{ route('scan') }}"
+                            class="p-4 hover:bg-green-900 hover:text-green-100 rounded-2xl duration-500">Scan</a></li>
+                    <li class="py-4 w-full text-center"><a href="/riwayat"
+                            class="p-4 hover:bg-green-900 hover:text-green-100 rounded-2xl duration-500">Riwayat</a>
+                    </li>
+                    <li class="py-4 w-full text-center"><a id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover"
+                            class="p-3 hover:bg-green-100 hover:text-green-700 text-green-100  bg-green-900 rounded-full text-1xl duration-500"><i
+                                class="fa-solid fa-user"></i></a></li>
+                </ul>
 
-    <!-- Mobile Slide-in Menu -->
-    <div
-      id="mobile-menu"
-      class="fixed top-14 right-0 h-full w-64 bg-white shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out z-40 p-6 space-y-4 md:hidden"
-    >
-      <button class="text-2xl absolute top-4 right-4" onclick="toggleMenu()">
-        ✕
-      </button>
-      <a href="#" class="block border-b pb-2 text-gray-700">Home</a>
-      <a href="#about" class="block border-b pb-2 text-gray-700">About</a>
-      <a href="#services" class="block border-b pb-2 text-gray-700">Services</a>
-      <a href="#history" class="block border-b pb-2 text-gray-700">Riwayat</a>
-      <a href="#scan" class="block border-b pb-2 text-gray-700">Scan</a>
-      <a href="#" class="block text-gray-700">Login</a>
+                <!-- Dropdown menu -->
+                <div id="dropdownHover"
+                    class="z-10 hidden bg-white divide-y max-w-[500px] divide-gray-100 rounded-lg shadow-sm w-44">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownHoverButton">
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 text-green-700">Guest</a>
+                        </li>
+                        <li>
+                            <a href="/logout"
+                                class="block px-4 py-2 hover:bg-green-100  text-green-700">Sign
+                                out <i class="fa-solid fa-right-from-bracket"></i></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="md:hidden block">
+                    <button class="hamburger hamburger--elastic" type="button">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar -->
+
+    <!-- Beranda -->
+    <div class="header h-auto flex items-center bg-slate-100 md:mx-32 md:my-8 md:rounded-3xl md:py-0 py-2 rounded-b-[70px] scroll-mt-24"
+        id="beranda">
+        <div class="container mx-auto px-5">
+            <div class="header-box flex lg:flex-row flex-col items-center gap-1">
+                <div class="box lg:w-1/2 lg:order-1 order-2 lg:text-left text-center px-14">
+                    <h1
+                        class="font-extrabold md:text-4xl sm:text-3xl text-2xl text-slate-900 mb-4 animate__animated animate__fadeInUp animate__delay-1s">
+                        Cerdas Mengenal Obat, Bijak Menggunakannya</h1>
+                    <p
+                        class="mb-4 text-slate-600 md:text-base text-sm animate__animated animate__fadeInUp animate__delay-1s leading-loose">
+                        Cukup scan obat, dan temukan informasi lengkap tentang indikasi obat. Karena hidup sehat dimulai
+                        dari pengetahuan yang benar.</p>
+                    <a href="#tentang"
+                        class="md:w-48 w-44 p-3 sm:mb-6 mb-7 mt-4 bg-green-800 rounded-xl flex items-center justify-center cursor-pointer font-bold text-green-100 hover:bg-green-900 md:mx-0 mx-auto animate__animated animate__fadeInUp animate__delay-1s">Tentang
+                        Kami</a>
+                </div>
+                <div class="box lg:w-1/2 lg:order-2 order-1 lg:pt-0 pt-2">
+                    <img src="{{ asset('images/hero.png') }}" alt="undraw.co"
+                        class="xl:w-[450px] lg:w-[400px] md:w-[300px] sm:w-[250px] w-[200px] block ml-auto animate__animated animate__fadeInUp animate__delay-1s">
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Optional overlay -->
-    <div
-      id="overlay"
-      class="fixed inset-0 bg-black bg-opacity-50 hidden z-30 md:hidden"
-      onclick="toggleMenu()"
-    ></div>
-
-    <!-- Hero -->
-    <section class="bg-gradient-to-r from-green-100 to-green-50 py-20 mx-auto">
-      <div
-        class="container max-w-6xl mx-auto px-4 flex flex-col-reverse md:flex-row items-center justify-center text-center md:text-left gap-10"
-      >
-        <!-- Teks Hero -->
-        <div class="md:w-1/2 md:pl-6">
-          <h2
-            class="text-4xl md:text-5xl font-bold text-gray-800 leading-tight"
-          >
-            Empowering Lives Through Health
-          </h2>
-          <p class="mt-4 text-gray-600">
-            Scan obat dengan mudah dan dapatkan informasi tentang indikasi dan
-            efek sampingnya.
-          </p>
-          <a
-            href="#scan"
-            class="inline-block mt-6 bg-green-600 text-white font-semibold px-6 py-3 rounded hover:bg-green-700"
-          >
-            Mulai Scan
-          </a>
+    <!-- Tentang -->
+    <div class="about md:py-24 py-16" id="tentang">
+        <div class="container mx-auto py-4">
+            <div class="about-box">
+                <div class="box text-center">
+                    <h1 class="font-extrabold text-slate-100 md:text-4xl sm:text-3xl text-2xl mb-8" data-aos="fade-up"
+                        data-aos-durations="1000">Tentang Kami</h1>
+                    <p class="text-slate-100 px-6 lg:w-3/4 w-full mx-auto leading-loose" data-aos="fade-up"
+                        data-aos-durations="1000" data-aos-delay="200">Pharmalens adalah platform berbasis AI yang
+                        membantu Anda memahami
+                        obat-obatan dengan lebih mudah. Cukup dengan memindai kemasan obat,
+                        Anda akan mendapatkan informasi mengenai indikasi dan efek sampingnya
+                        secara instan.</p>
+                </div>
+                <div class="box pt-10">
+                    <img src="{{ asset('images/about.svg') }}" alt="storyset.com"
+                        class="md:w-[550px] sm:w-[300px] w-[200px] mx-auto">
+                </div>
+            </div>
         </div>
+    </div>
+    <!-- Tentang -->
 
-        <!-- Gambar Hero -->
-        <div class="md:w-1/2">
-          <img
-            src="{{ asset('images/medicine.png') }}"
-            alt="Hero Image"
-            class="max-w-[400px] w-full mx-auto"
-          />
+    <!-- Fitur -->
+    <div class="service scroll-mt-24" id="fitur">
+        <div class="container mx-auto md:my-24 my-20 px-4">
+            <div class="service box">
+                <div class="box text-center">
+                    <h1 class="font-extrabold md:text-4xl sm:text-3xl text-2xl  text-slate-100 mb-6"
+                        data-aos="fade-up" data-aos-durations="1000">Fitur Unggulan Kami</h1>
+                    <p class="md:w-3/4 text-slate-100 w-full mx-auto leading-loose" data-aos="fade-up"
+                        data-aos-durations="1000" data-aos-delay="200">Kami hadir untuk memudahkan Anda dalam memahami
+                        obat yang dikonsumsi. Dengan fitur-fitur berikut, dapatkan informasi obat dengan cepat dan
+                        praktis</p>
+                </div>
+                <div class="box flex items-center justify-center gap-10 flex-wrap pt-12">
+                    <div class="p-5 flex flex-col justify-center items-center md:w-[270px] w-[250px] md:h-[270px] h-[250px] bg-slate-100 text-center rounded-2xl  transform hover:-translate-y-4 transition duration-500"
+                        style="box-shadow: 17px 15px 0px -6px rgba(234, 239, 157, 0.75);">
+
+                        <i class="fa-solid fa-camera text-4xl text-green-800 mb-5"></i>
+                        <h1 class="md:text-2xl text-xl font-bold mb-2">Pindai Obat</h1>
+                        <p class="md:text-md text-sm">Ambil foto kemasan atau label obat untuk mulai mengenali
+                            informasi penting seputar produk tersebut secara instan.</p>
+                    </div>
+                    <div class="p-5 flex flex-col justify-center items-center md:w-[270px] w-[250px] md:h-[270px] h-[250px] bg-slate-100 text-center rounded-2xl transform hover:-translate-y-4 transition duration-500"
+                        style="box-shadow: 17px 15px 0px -6px rgba(234, 239, 157, 0.75);">
+
+                        <i class="fa-solid fa-search text-4xl text-green-800 mb-5"></i>
+                        <h1 class="md:text-2xl text-xl font-bold mb-2">Lihat Indikasi</h1>
+                        <p class="md:text-md text-sm">Temukan kegunaan, cara kerja, dan manfaat dari obat yang Anda
+                            konsumsi hanya dalam beberapa detik.</p>
+                    </div>
+                    <div class="p-5 flex flex-col justify-center items-center md:w-[270px] w-[250px] md:h-[270px] h-[250px] bg-slate-100 text-center rounded-2xl transform hover:-translate-y-4 transition duration-500"
+                        style="box-shadow: 17px 15px 0px -6px rgba(234, 239, 157, 0.75)">
+                        <i class="fa-solid fa-file-medical text-4xl text-green-800 mb-5"></i>
+                        <h1 class="md:text-2xl text-xl font-bold mb-2">Cek Riwayat</h1>
+                        <p class="md:text-md text-sm">Riwayat pemindaian Anda tersimpan otomatis, memudahkan untuk
+                            mengecek kembali obat yang pernah Anda telusuri.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </section>
+        <!-- Fitur -->
 
-    <!-- About -->
-    <section id="about" class="py-16 bg-white">
-      <div class="container mx-auto px-4 text-center">
-        <h3 class="text-3xl font-bold text-gray-800 mb-6">
-          Tentang Pharmalens
-        </h3>
-        <p class="text-gray-600 max-w-3xl mx-auto">
-          Pharmalens adalah platform berbasis AI yang membantu Anda memahami
-          obat-obatan dengan lebih mudah. Cukup dengan memindai kemasan obat,
-          Anda akan mendapatkan informasi mengenai indikasi dan efek sampingnya
-          secara instan.
-        </p>
-      </div>
-    </section>
-
-    <!-- Services -->
-    <section id="services" class="py-16 bg-gray-100">
-      <div class="container mx-auto px-4 text-center">
-        <h3 class="text-3xl font-bold text-gray-800 mb-10">Fitur Kami</h3>
-        <div class="grid md:grid-cols-3 gap-8">
-          <div
-            class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition"
-          >
-            <h4 class="text-xl font-semibold text-green-600 mb-2">Scan Obat</h4>
-            <p class="text-gray-600">
-              Pindai label obat menggunakan kamera dan dapatkan data lengkapnya.
-            </p>
-          </div>
-          <div
-            class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition"
-          >
-            <h4 class="text-xl font-semibold text-green-600 mb-2">
-              Informasi Efek Samping
-            </h4>
-            <p class="text-gray-600">
-              Ketahui efek samping dari obat-obatan yang Anda konsumsi.
-            </p>
-          </div>
-          <div
-            class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition"
-          >
-            <h4 class="text-xl font-semibold text-green-600 mb-2">
-              Riwayat Scan
-            </h4>
-            <p class="text-gray-600">
-              Semua hasil scan Anda akan tersimpan secara otomatis.
-            </p>
-          </div>
+        <!-- Scan -->
+        <div class="scan flex items-center md:mx-32 md:my-20 md:rounded-3xl md:py-36 py-20 rounded-b-[70px]"
+            id="scan">
+            <div class="scan mx-auto px-4">
+                <div class="scan-box flex lg:flex-row flex-col items-center gap-1">
+                    <div class="box lg:w-1/2 lg:order-1 order-2 lg:text-left text-center px-[10px]">
+                        <h1 class="font-extrabold text-slate-100 md:text-4xl sm:text-3xl text-xl mb-6"
+                            data-aos="fade-up" data-aos-duration="1000">Coba Sekarang, Lebih Mudah Kenali Obat Anda!
+                        </h1>
+                        <p class="text-slate-100 leading-loose mb-8" data-aos="fade-up" data-aos-duration="1000"
+                            data-aos-delay="200">Temukan manfaat fitur kami secara langsung. Cukup unggah foto label
+                            obat dan dapatkan informasi penting seketika. Praktis, cepat, dan gratis!</p>
+                        <a href="{{ route('scan') }}"
+                            class="md:w-48 w-44 md:h-12 h-11 sm:mb-6 mb-7 mt-4 p-4 bg-green-100 rounded-xl font-bold text-green-800 hover:bg-green-200 animate__animated animate__fadeInUp animate__delay-1s">Coba
+                            Sekarang</a>
+                    </div>
+                    <div class="box lg:w-1/2 lg:order-2 order-1 lg:pt-0 pt-2">
+                        <img src="{{ asset('images/pharmacist.svg') }}" alt="undraw.co"
+                            class="xl:w-[450px] lg:w-[400px] md:w-[300px] w-[250px] block ml-auto animate__animated animate__fadeInUp animate__delay-1s">
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </section>
+        <!-- Scan -->
 
-    <!-- Footer -->
-    <footer class="bg-green-900 text-white pt-12 pb-6 mt-16">
-      <div
-        class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-11"
-      >
-        <!-- Brand -->
-        <div>
-          <h4 class="text-2xl font-bold text-white mb-4">Pharmalens</h4>
-          <p class="text-sm text-white leading-relaxed">
-            Pharmalens memudahkan pemahaman obat dengan teknologi scan berbasis
-            AI.
-          </p>
+        <!-- Footer -->
+        <div class="footer py-7 bg-green-100 text-green-900 bottom-0">
+            <div class="container mx-auto px-4">
+                <div class="footer-box flex justify-center items-center flex-col gap-5">
+                    <div class="box lg:w-[500px]">
+                        <div class="logo flex justify-center items-center gap-2">
+                            <img src="{{ asset('images/pharmalens.png') }}" alt="flaticon.com"
+                                class="md:w-12 w-9" />
+                            <h1 class="font-bold md:text-xl text-sm">Pharmalens</h1>
+                        </div>
+                    </div>
+                    <div
+                        class="box flex items-center justify-center lg:w-[80px] w-[60px] md:gap-10 gap-2 font-bold md:text-[15px] text-[10px]">
+                        <a href="#beranda" class="opacity-70 hover:opacity-100">Beranda</a>
+                        <a href="#tentang" class="opacity-70 hover:opacity-100">Tentang</a>
+                        <a href="#fitur" class="opacity-70 hover:opacity-100">Fitur</a>
+                        <a href="scan-obat.html" class="opacity-70 hover:opacity-100">Scan</a>
+                        <a href="riwayat-scan.html" class="opacity-70 hover:opacity-100">Riwayat</a>
+                    </div>
+                    <hr class="w-full border-t-1 border-green-900" />
+                    <p class="text-xs">&copy; 2025 Pharmalens | All Rights Reserved</p>
+                </div>
+            </div>
         </div>
+        <!-- Footer -->
 
-        <!-- Navigation -->
-        <div>
-          <h4 class="text-lg font-semibold mb-4 text-white">Navigasi</h4>
-          <ul class="space-y-2 text-white text-sm">
-            <li><a href="#home" class="hover:text-white">Beranda</a></li>
-            <li><a href="#about" class="hover:text-white">Tentang</a></li>
-            <li><a href="#services" class="hover:text-white">Fitur</a></li>
-            <li><a href="#history" class="hover:text-white">Riwayat</a></li>
-            <li><a href="#scan" class="hover:text-white">Scan</a></li>
-          </ul>
-        </div>
 
-        <!-- Contact -->
-        <div>
-          <h4 class="text-lg font-semibold mb-4 text-white">Kontak Kami</h4>
-          <p class="text-sm text-gray-400">📧 info@pharmalens.com</p>
-          <p class="text-sm text-gray-400">📞 +62 812 3456 7890</p>
-        </div>
-      </div>
-      <div
-        class="text-center text-sm text-white mt-10 border-t border-white pt-6"
-      >
-        &copy; 2025 Pharmalens. All rights reserved.
-      </div>
-    </footer>
+        <!-- JS -->
+        <script src="{{ asset('js/script.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+        <!-- JS AOS (Animate on Screen) -->
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>
+            AOS.init();
+        </script>
+</body>
 
-    <!-- Script -->
-    <script>
-      function toggleMenu() {
-        const menu = document.getElementById("mobile-menu");
-        const overlay = document.getElementById("overlay");
-        const isOpen = menu.classList.contains("translate-x-0");
-
-        if (isOpen) {
-          menu.classList.add("translate-x-full");
-          menu.classList.remove("translate-x-0");
-          overlay.classList.add("hidden");
-          document.body.classList.remove("overflow-hidden");
-        } else {
-          menu.classList.remove("translate-x-full");
-          menu.classList.add("translate-x-0");
-          overlay.classList.remove("hidden");
-          document.body.classList.add("overflow-hidden");
-        }
-      }
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
-  </body>
 </html>

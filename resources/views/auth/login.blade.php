@@ -1,18 +1,303 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="scroll-smooth">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./img/pharmalens.png" type="image/x-icon" />
+
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Font Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <title>Pharmalens | Login</title>
+
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(90deg, #dcfce7, #7bf1a8);
+        }
+
+        .container {
+            position: relative;
+            width: 870px;
+            height: 525px;
+            background: #fff;
+            border-radius: 30px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, .2);
+            margin: 20px;
+            overflow: hidden;
+        }
+
+        .form-box {
+            position: absolute;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            color: #333;
+            text-align: center;
+            padding: 40px;
+            z-index: 1;
+            transition: .6s ease-in-out 1.2s, visibility 0s 1s;
+        }
+
+        .container.active .form-box {
+            right: 50%;
+        }
+
+        .form-box.register {
+            visibility: hidden;
+        }
+
+        .container.active .form-box.register {
+            visibility: visible;
+        }
+
+        form {
+            width: 100%;
+        }
+
+        .container h1 {
+            font-size: 32px;
+            margin: -10px 0;
+        }
+
+        .input-box {
+            position: relative;
+            margin: 30px 0;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 13px;
+            background: #eee;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .input-box input::placeholder {
+            color: #888;
+            font-weight: 400;
+        }
+
+        .input-box i {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: #888;
+        }
+
+        .forgot-link {
+            margin: -15px 0 35px;
+        }
+
+        .forgot-link a {
+            font-size: 14.5px;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .btn {
+            width: 100%;
+            height: 42px;
+            background: rgb(37, 114, 59);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #dcfce7;
+            font-weight: 700;
+        }
+
+        .btn:hover {
+            background: #1a6136;
+            color: #dcfce7;
+            transition: .2s ease-in-out;
+        }
+
+        .toggle-box {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .toggle-box::before {
+            content: '';
+            position: absolute;
+            left: -250%;
+            width: 300%;
+            height: 100%;
+            background: rgb(37, 114, 59);
+            border-radius: 150px;
+            z-index: 2;
+            transition: 1.8s ease-in-out;
+        }
+
+        .container.active .toggle-box::before {
+            left: 50%;
+        }
+
+        .toggle-panel {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            color: #fff;
+            display: flex;
+            gap: 20px;
+            text-align: center;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            transition: .6s ease-in-out;
+        }
+
+        .toggle-panel h1 {
+            font-size: 28px;
+            margin: 6px 10px 0;
+        }
+
+        .toggle-panel.toggle-left {
+            left: 0;
+            transition-delay: 1.2s;
+        }
+
+        .container.active .toggle-panel.toggle-left {
+            left: -50%;
+            transition-delay: .6s;
+        }
+
+        .toggle-panel.toggle-right {
+            right: -50%;
+            transition-delay: .6s;
+        }
+
+        .container.active .toggle-panel.toggle-right {
+            right: 0;
+            transition-delay: 1.2s;
+        }
+
+        .toggle-panel .btn {
+            width: 160px;
+            height: 42px;
+            background: transparent;
+            border: 2px solid #fff;
+            box-shadow: none;
+        }
+
+        .toggle-panel .btn:hover {
+            background: #dcfce7;
+            color: rgb(37, 114, 59);
+            transition: .4s ease-in-out;
+        }
+
+        @media screen and (max-width: 650px) {
+            .container {
+                height: calc(100vh - 40px);
+            }
+
+            .form-box {
+                bottom: 0;
+                width: 100%;
+                height: 70%;
+            }
+
+            .container.active .form-box {
+                right: 0;
+                bottom: 30%;
+            }
+
+            .toggle-box::before {
+                left: 0;
+                top: -270%;
+                width: 100%;
+                height: 300%;
+                border-radius: 20vw;
+            }
+
+            .container.active .toggle-box::before {
+                left: 0;
+                top: 70%;
+            }
+
+            .toggle-panel {
+                width: 100%;
+                height: 30%
+            }
+
+            .toggle-box .toggle-panel h1 {
+                font-size: 28px;
+            }
+
+            .toggle-panel.toggle-left {
+                top: 0;
+            }
+
+            .container.active .toggle-panel.toggle-left {
+                left: 0;
+                top: -30%;
+            }
+
+            .toggle-panel.toggle-right {
+                right: 0;
+                bottom: -30%;
+            }
+
+            .container.active .toggle-panel.toggle-right {
+                bottom: 0;
+            }
+        }
+
+        @media screen and (max-width: 400px) {
+            .form-box {
+                padding: 20px;
+            }
+
+            .toggle-box .toggle-panel h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <div class="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-        <div class="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
-            <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Sign In</h2>
+
+    <!-- Login dan Registrasi-->
+    <div class="container">
+        <div class="form-box login">
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -22,44 +307,61 @@
                     </ul>
                 </div>
             @endif
-            <form class="space-y-4" action="{{ route('loginpost') }}" method="POST">
+            <form action="/loginpost" method="POST">
                 @csrf
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                    <input type="email" name="email"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
-                        placeholder="your@email.com" />
+                <h1>Login</h1>
+                <div class="input-box">
+                    <input type="text" placeholder="Username" required name="email">
+                    <i class='bx bxs-user'></i>
                 </div>
-                @error('email')
-                    <small class="text-danger">{{ $message }}</small>
-                @enderror
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                    <input name="password" type="password"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
-                        placeholder="••••••••" />
+                <div class="input-box">
+                    <input type="password" placeholder="Password" required name="password">
+                    <i class='bx bxs-lock-alt'></i>
                 </div>
-
-                <div class="flex items-center justify-between">
-                    <label class="flex items-center">
-                        <input type="checkbox" class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-                        <span class="ml-2 text-sm text-gray-600">Remember me</span>
-                    </label>
-                    <a href="#" class="text-sm text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+                <div class="forgot-link">
+                    <a href="#">Lupa Password?</a>
                 </div>
-
-                <button type="submit"
-                    class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg transition-colors">
-                    Sign In
-                </button>
+                <button type="submit" class="btn">Login</button>
             </form>
+        </div>
 
-            <div class="mt-6 text-center text-sm text-gray-600">
-                Don't have an account?
-                <a href="/register" class="text-indigo-600 hover:text-indigo-500 font-medium">Sign up</a>
+        <div class="form-box register">
+            <form action="/registerpost" method="POST">
+                @csrf
+                <h1>Registrasi</h1>
+                <div class="input-box">
+                    <input type="text" placeholder="Username" required name="name">
+                    <i class='bx bxs-user'></i>
+                </div>
+                <div class="input-box">
+                    <input type="email" placeholder="Email" required name="email">
+                    <i class='bx bxs-envelope'></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" placeholder="Password" required name="password">
+                    <i class='bx bxs-lock-alt'></i>
+                </div>
+                <button type="submit" class="btn">Registrasi</button>
+            </form>
+        </div>
+
+        <div class="toggle-box">
+            <div class="toggle-panel toggle-left">
+                <h1>Selamat Datang!</h1>
+                <p>Belum memiliki akun?</p>
+                <button class="btn register-btn">Registrasi</button>
+            </div>
+            <div class="toggle-panel toggle-right">
+                <h1>Selamat Datang Kembali!</h1>
+                <p>Sudah memiliki akun?</p>
+                <button class="btn login-btn">Login</button>
             </div>
         </div>
     </div>
+    <!-- Login dan Registrasi-->
+
+    <!-- JS -->
+    <script src="{{ asset('js/login.js') }}"></script>
 </body>
 
 </html>
