@@ -13,37 +13,51 @@ window.addEventListener("scroll", () => {
     menu.classList.remove("menu-active");
 })
 
-// Scan Obat
-const fileInput = document.getElementById('upload');
-    const aiExplanation = document.getElementById('aiExplanation');
-    const preview = document.getElementById('preview');
+document.getElementById("upload").addEventListener("change", function (event) {
+    const file = event.target.files[0];
+    const preview = document.getElementById("preview");
 
-    fileInput.addEventListener('change', function () {
-      const file = fileInput.files[0];
-      if (!file) {
-        aiExplanation.textContent = 'Silakan unggah gambar untuk melihat hasil pembahasan.';
-        preview.src = '';
-        preview.classList.add('hidden');
-        return;
+    if (file) {
+      preview.src = URL.createObjectURL(file);
+      preview.classList.remove("hidden");
+    }
+  });
+
+
+  const form = document.getElementById("uploadForm");
+  const aiExplanation = document.getElementById("aiExplanation");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const fileInput = document.getElementById("upload");
+    const file = fileInput.files[0];
+
+    if (!file) {
+      aiExplanation.textContent = "Silakan pilih gambar terlebih dahulu.";
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("image", file);
+
+    aiExplanation.textContent = "Memproses gambar...";
+
+    try {
+      const response = await fetch("http://localhost:5000/detect", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data && data.result) {
+        aiExplanation.textContent = `Obat terdeteksi: ${data.result.nama_obat}. Manfaat: ${data.result.manfaat}`;
+      } else {
+        aiExplanation.textContent = "Tidak ada obat terdeteksi.";
       }
-
-      // preview gambar
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        preview.src = e.target.result;
-        preview.classList.remove('hidden');
-      };
-      reader.readAsDataURL(file);
-
-      // Simulasi hasil AI
-      const dummyText = "Gambar obat dikenali sebagai Paracetamol. Digunakan untuk meredakan nyeri dan menurunkan demam.";
-      aiExplanation.textContent = dummyText;
-    });
-
-
-
-
-
-
-
-
+    } catch (err) {
+      console.error(err);
+      aiExplanation.textContent = "Gagal menghubungi server.";
+    }
+  })

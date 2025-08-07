@@ -45,8 +45,8 @@
           <li class="py-4 w-full text-center"><a href="#beranda" class="p-4 hover:bg-green-900 hover:text-green-100 rounded-2xl duration-500">Beranda</a></li>
           <li class="py-4 w-full text-center"><a href="#tentang" class="p-4 hover:bg-green-900 hover:text-green-100 rounded-2xl duration-500">Tentang</a></li>
           <li class="py-4 w-full text-center"><a href="#fitur" class="p-4 hover:bg-green-900 hover:text-green-100 rounded-2xl duration-500">Fitur</a></li>
-          <li class="py-4 w-full text-center"><a href="scan-obat.html" class="p-4 hover:bg-green-900 hover:text-green-100 rounded-2xl duration-500">Scan</a></li>
-          <li class="py-4 w-full text-center"><a href="riwayat-scan.html" class="p-4 hover:bg-green-900 hover:text-green-100 rounded-2xl duration-500">Riwayat</a></li>
+          <li class="py-4 w-full text-center"><a href="#scan" class="p-4 hover:bg-green-900 hover:text-green-100 rounded-2xl duration-500">Scan</a></li>
+          <li class="py-4 w-full text-center"><a href="#riwayat" class="p-4 hover:bg-green-900 hover:text-green-100 rounded-2xl duration-500">Riwayat</a></li>
         </ul>
         
         <div class="md:hidden block">
@@ -128,13 +128,13 @@
   <!-- Fitur -->
 
   <!-- Scan -->
-  <div class="scan flex items-center md:mx-32 md:my-20 md:rounded-3xl md:py-36 py-20 rounded-b-[70px]" id="scan">
+  <div class="scan flex items-center md:mx-32 md:my-20 md:rounded-3xl md:py-36 py-20 rounded-b-[70px]">
     <div class="scan mx-auto px-4">
       <div class="scan-box flex lg:flex-row flex-col items-center gap-1">
         <div class="box lg:w-1/2 lg:order-1 order-2 lg:text-left text-center px-[10px]">
           <h1 class="font-extrabold text-slate-100 md:text-4xl sm:text-3xl text-xl mb-6" data-aos="fade-up" data-aos-duration="1000">Coba Sekarang, Lebih Mudah Kenali Obat Anda!</h1>
           <p class="text-slate-100 leading-loose mb-8" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">Temukan manfaat fitur kami secara langsung. Cukup unggah foto label obat dan dapatkan informasi penting seketika. Praktis, cepat, dan gratis!</p>
-          <a href="scan-obat.html" class="md:w-48 w-44 md:h-12 h-11 sm:mb-6 mb-7 mt-4 p-4 bg-green-100 rounded-xl font-bold text-green-800 hover:bg-green-200 animate__animated animate__fadeInUp animate__delay-1s">Coba Sekarang</a>    
+          <a href="#scan" class="md:w-48 w-44 md:h-12 h-11 sm:mb-6 mb-7 mt-4 p-4 bg-green-100 rounded-xl font-bold text-green-800 hover:bg-green-200 animate__animated animate__fadeInUp animate__delay-1s">Coba Sekarang</a>    
         </div> 
         <div class="box lg:w-1/2 lg:order-2 order-1 lg:pt-0 pt-2">
           <img src="./img/pharmacist.svg" alt="undraw.co" class="xl:w-[450px] lg:w-[400px] md:w-[300px] w-[250px] block ml-auto animate__animated animate__fadeInUp animate__delay-1s">
@@ -142,7 +142,75 @@
       </div>
     </div>
   </div>
+
+  <div class="scan my-14 md:py-18 sm:py-8 py-7 md:px-28 sm:px-9 px-4 h-auto scroll-mt-20" id="scan">
+        <div class="scan-container mx-auto px-4">
+        <!-- Form Upload Gambar -->
+            <h1 class="md:text-3xl text-2xl  font-bold text-center text-slate-100 mb-4">
+            Unggah Gambar Obat
+            </h1>
+            <p class="text-center text-slate-100 leading-loose">Silakan unggah gambar obat yang jelas agar sistem dapat memproses informasi dari kemasan atau label obat dengan lebih akurat. Format gambar yang didukung: JPG, PNG, dan JPEG.</p>
+
+            <div
+            class="scan-box grid lg:grid-cols-2 grid-cols-1 md:gap-16 gap-3 pt-16 items">
+                <div
+                    class="scan-form bg-green-100 flex flex-col items-center justify-center md:gap-8 gap-2 mb-4 p-7 rounded-2xl">
+                    <form id="uploadForm" class="flex flex-col items-center justify-center gap-3">
+                      <h2 class="md:text-2xl text-xl font-bold text-green-800">Pilih Gambar</h2>
+                    <div class="upload bg-green-200 flex flex-col items-center justify-center md:px-44 w-3/4 px-2 py-10 rounded-2xl border-2 border-dashed border-green-700">
+                        <i class="fa-solid fa-camera text-4xl text-green-800 mb-5"></i>
+                        <label class="inline-block bg-green-500 text-white font-semibold md:text-sm text-xs py-2 px-4 md:w-[100px] w-20 text-center rounded-lg cursor-pointer hover:bg-green-600 transition duration-300">
+                        Pilih File
+                        <input 
+                          type="file" 
+                          id="upload" 
+                          name="image"
+                          accept="image/*" 
+                          class="hidden" />
+                        </label>         
+                    </div>  
+                    <button
+                          type="submit"
+                          class="mt-4 bg-green-700 text-white px-4 py-2 rounded hover:bg-green-900 cursor-pointer transition duration-300"
+                        >
+                          Scan Gambar
+                        </button> 
+                    </form>
+                </div>
+            
+                <div class="hasil-scan bg-green-100 mb-4 p-7 rounded-2xl">
+                    <h4 class="md:text-2xl text-xl text-center text-green-800 font-bold mb-2">Hasil</h4>
+                    <img
+                    id="preview"
+                    src=""
+                    class="w-[215px] h-auto rounded-lg hidden"
+                    alt="Preview Gambar"/>
+                    <div class="mt-4">
+                        <p class="font-semibold text-green-800">Penjelasan AI:</p>
+                        <p id="aiExplanation" class="md:text-md text-sm text-gray-700 mt-1">
+                            Silakan unggah gambar untuk melihat hasil pembahasan.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
   <!-- Scan -->
+
+  <!-- Riwayat Scan -->
+   <div class="my-12 md:px-28 sm:px-9 px-4 h-screen" id="riwayat">
+        <div class="mx-auto px-4">
+            <h1 class="md:text-3xl text-2xl  font-bold text-slate-100 mb-12">
+            Riwayat Scan
+            </h1>
+
+            <div class="scan-form bg-green-100 flex flex-col items-center justify-center md:gap-8 gap-2 p-7 rounded-2xl min-h-[450px]">
+                <img src="./img/history-scan.svg" alt="undraw.co" class="md:w-[150px] w-[120px]">
+                <p>Belum Ada Riwayat</p>
+            </div>                     
+        </div>
+    </div>
+  <!-- Riwayat Scan -->
   
   <!-- Footer -->
     <div class="footer py-7 bg-green-100 text-green-900 bottom-0">
@@ -158,8 +226,8 @@
                     <a href="#beranda" class="opacity-70 hover:opacity-100">Beranda</a>
                     <a href="#tentang" class="opacity-70 hover:opacity-100">Tentang</a>
                     <a href="#fitur" class="opacity-70 hover:opacity-100">Fitur</a>
-                    <a href="scan-obat.html" class="opacity-70 hover:opacity-100">Scan</a>
-                    <a href="riwayat-scan.html" class="opacity-70 hover:opacity-100">Riwayat</a>
+                    <a href="#scan" class="opacity-70 hover:opacity-100">Scan</a>
+                    <a href="#riwayat" class="opacity-70 hover:opacity-100">Riwayat</a>
                 </div>
                 <hr class="w-full border-t-1 border-green-900" />
                 <p class="text-xs">&copy; 2025 Pharmalens | All Rights Reserved</p>
