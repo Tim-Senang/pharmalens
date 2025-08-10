@@ -1,0 +1,89 @@
+/* Statistik Mini */
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255,255,255,0.85);
+  border-radius: 16px;
+  padding: 16px 18px;
+  box-shadow: 0 4px 18px 0 rgba(38, 255, 184, 0.08);
+  border: 1.5px solid #c1f9e6;
+  min-width: 170px;
+}
+.stat-card .icon {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(120deg, #43e97b 0%, #38f9d7 100%);
+  color: white;
+  font-size: 1.3rem;
+  box-shadow: 0 2px 8px 0 rgba(38, 255, 184, 0.10);
+  margin-right: 8px;
+}
+
+/* Card Riwayat */
+.glass-card {
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.18);
+  border: 1.5px solid rgba(67,233,123,0.18);
+  box-shadow: 0 8px 32px 0 rgba(31,38,135,0.10);
+  border-radius: 18px;
+  transition: box-shadow 0.2s, transform 0.2s;
+  margin-bottom: 16px;
+}
+.glass-card:hover {
+  box-shadow: 0 16px 48px 0 rgba(31,38,135,0.18);
+  transform: translateY(-4px) scale(1.015);
+}
+.glass-card h3 {
+  font-weight: 700;
+  color: black;
+  font-size: 1.08rem;
+}
+
+/* Badge Nomor */
+.badge-nomor {
+  position: absolute;
+  top: -16px; left: -16px;
+  background: linear-gradient(120deg, #43e97b 0%, #f9d423 100%);
+  color: white;
+  border-radius: 50%;
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800;
+  font-size: 1rem;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 8px 0 rgba(67,233,123,0.12);
+}
+
+/* Detail Button */
+.detail-btn {
+  background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+  color: #fff;
+  border-radius: 12px;
+  padding: 7px 18px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 12px 0 rgba(38,255,184,0.10);
+  transition: background 0.2s, transform 0.2s;
+}
+.detail-btn:hover {
+  background: linear-gradient(90deg, #38f9d7 0%, #f9d423 100%);
+  transform: scale(1.05);
+}
+
+/* Responsive Grid */
+@media (min-width: 768px) {
+  .riwayat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+}
+@media (max-width: 767px) {
+  .riwayat-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+}

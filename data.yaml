@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 27
+names: ['amlodipine 10mg hipertensi', 'amlodipine 5mg hipertensi', 'bisoprolol 2-5mg hipertensi', 'bisoprolol 5mg hipertensi', 'captopril 12-5mg hipertensi', 'captopril 25mg hipertensi', 'captopril 50mg hipertensi', 'diamicron mr 60mg diabetes', 'dopamet 250mg hipertensi', 'gliclazide 80mg diabetes', 'glimepiride 1mg diabetes', 'glimepiride 2mg diabetes', 'glimepiride 3mg diabetes', 'glimepiride 4mg diabetes', 'glipizide 5mg diabetes', 'gliquidone 30mg diabetes', 'glucodex 80mg diabetes', 'glucophage xr 500mg diabetes', 'glucotrol xl 10mg diabetes', 'glucotrol xl 5mg diabetes', 'hidroklorotiazid 25mg hipertensi', 'januvia 100mg diabetes', 'metformin 500mg diabetes', 'metformin 850mg diabetes', 'ramipril 10mg hipertensi', 'ramipril 2-5mg hipertensi', 'ramipril 5mg hipertensi']
+
+roboflow:
+  workspace: tugas-akhir-ti21f
+  project: new-deteksi-obat
+  version: 4
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/tugas-akhir-ti21f/new-deteksi-obat/dataset/4

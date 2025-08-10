@@ -1,0 +1,6 @@
+Flask
+flask_cors
+ultralytics
+Pillow
+mysql-connector-python
+requests

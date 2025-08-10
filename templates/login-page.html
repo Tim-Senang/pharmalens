@@ -288,6 +288,43 @@
                     font-size: 25px;
                 }
             }
+        /* Notifikasi Bar (Toast) */
+        .notif-bar {
+          position: fixed;
+          top: 32px;
+          left: 50%;
+          transform: translateX(-50%);
+          min-width: 260px;
+          max-width: 90vw;
+          padding: 16px 32px;
+          border-radius: 12px;
+          font-weight: 600;
+          font-size: 1rem;
+          color: #fff;
+          box-shadow: 0 6px 32px rgba(37,114,59,0.12), 0 1.5px 4px rgba(0,0,0,0.09);
+          z-index: 9999;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.4s cubic-bezier(.4,0,.2,1), transform 0.4s cubic-bezier(.4,0,.2,1);
+        }
+        .notif-bar.show {
+          opacity: 1;
+          pointer-events: auto;
+          transform: translateX(-50%) scale(1.04);
+        }
+        .notif-bar.success {
+          background: linear-gradient(90deg, #25a25b);
+        }
+        .notif-bar.error {
+          background: linear-gradient(90deg, #f44336);
+        }
+        @media (max-width: 500px) {
+          .notif-bar {
+            padding: 12px 10vw;
+            font-size: 0.95rem;
+          }
+        }
+
         </style>
     </head>
     <body>
@@ -346,7 +383,28 @@
     </div>
     <!-- Login dan Registrasi-->
 
+    <!-- Notifikasi Login (Toast) -->
+    <div id="notifBar" class="notif-bar" style="display:none">
+      <span id="notifMsg"></span>
+    </div>
     <!-- JS -->
     <script src="./js/login.js"></script>
+<script>
+// Fungsi untuk menampilkan notifikasi
+function showNotif(message, status) {
+  const notifBar = document.getElementById('notifBar');
+  const notifMsg = document.getElementById('notifMsg');
+  notifMsg.textContent = message;
+  notifBar.className = 'notif-bar ' + (status === 'success' ? 'success' : 'error') + ' show';
+  notifBar.style.display = 'block';
+  clearTimeout(window.notifTimeout);
+  window.notifTimeout = setTimeout(() => {
+    notifBar.classList.remove('show');
+    setTimeout(() => {
+      notifBar.style.display = 'none';
+    }, 400);
+  }, 2500);
+}
+</script>
   </body>
 </html>
